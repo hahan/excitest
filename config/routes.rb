@@ -1,8 +1,9 @@
 Learnbird::Application.routes.draw do
-  get "user_cards/new"
+  resources :user_cards
+
   root  'static_pages#home'
   match '/about', to: 'static_pages#about', via: 'get'
-  match '/new_cards', to: 'user_cards#new', via: 'get'
+  match '/newcard', to: 'user_cards#new', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
