@@ -7,4 +7,10 @@
     <%= @user_card.description %>
   </h2>
 
+  <% if @user_card.entries.any? %>
+      <ol>
+        <%= render partial: 'shared/card_entry_item', collection: @user_card.entries %>
+      </ol>
+  <% end %>
+
 </div>

@@ -8,6 +8,7 @@ describe UserCard do
 
   it { should respond_to (:name) }
   it { should respond_to (:description) }
+  it { should respond_to(:user_card_entries) }
   it { should be_valid}
 
   describe "User card with empty name" do

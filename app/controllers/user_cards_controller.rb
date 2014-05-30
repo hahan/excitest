@@ -1,6 +1,7 @@
 class UserCardsController < ApplicationController
   def new
     @user_card = UserCard.new
+    1.times { @user_card.user_card_entries.build}
   end
 
   def create
@@ -19,6 +20,6 @@ class UserCardsController < ApplicationController
   private
 
   def user_card_params
-    params.require(:user_card).permit(:name, :description)
+    params.require(:user_card).permit(:name, :description, user_card_entries_attributes: [:id, :entry_key, :entry_value])
   end
 end

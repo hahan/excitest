@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529065844) do
+ActiveRecord::Schema.define(version: 20140530063414) do
+
+  create_table "user_card_entries", force: true do |t|
+    t.string   "entry_key"
+    t.string   "entry_value"
+    t.integer  "user_card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_card_entries", ["user_card_id"], name: "index_user_card_entries_on_user_card_id"
 
   create_table "user_cards", force: true do |t|
     t.string   "name"

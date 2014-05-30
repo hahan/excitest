@@ -13,6 +13,18 @@
           <%= f.label :description %>
           <%= f.text_field :description %>
 
+          <ul>
+            <%= f.fields_for :user_card_entries do |user_card_entries_form| %>
+                <li>
+                  <%= user_card_entries_form.label :entry_key %>
+                  <%= user_card_entries_form.text_field :entry_key %>
+
+                  <%= user_card_entries_form.label :entry_value %>
+                  <%= user_card_entries_form.text_field :entry_value %>
+                </li>
+            <% end %>
+          </ul>
+
           <%= f.submit "Create cards", class: "btn btn-large btn-primary" %>
       <% end %>
     </div>

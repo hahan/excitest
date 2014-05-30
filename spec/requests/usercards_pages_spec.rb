@@ -25,6 +25,8 @@ describe "User visits the cards pages" do
 
       fill_in "Name", with: "English to german translation"
       fill_in "Description", with: "Translation card"
+      fill_in "Entry key", with: "word1"
+      fill_in "Entry value", with: "word2"
     end
 
     it "should create a user card" do
