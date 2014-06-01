@@ -1,7 +1,7 @@
 class UserCardsController < ApplicationController
   def new
     @user_card = UserCard.new
-    1.times { @user_card.user_card_entries.build}
+    3.times { @user_card.user_card_entries.build}
   end
 
   def create

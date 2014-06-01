@@ -1,33 +1,39 @@
 <% provide(:title, 'New cards - LearnBird') %>
-<div class="center hero-unit">
-  <h2>
-    Create your learn cards here by adding content you want to learn in left with their translation or desciption in right.
-  </h2>
 
-  <div class="row">
-    <div class="small-4 columns">
+<div>
       <%= form_for(@user_card) do |f| %>
-          <%= f.label :name %>
-          <%= f.text_field :name %>
 
-          <%= f.label :description %>
-          <%= f.text_field :description %>
+            <h4>About your learning set</h4>
+            <p>
+              <%= f.label :name %>
+            </p>
+            <p>
+              <%= f.text_field :name %>
+            </p>
 
-          <ul>
-            <%= f.fields_for :user_card_entries do |user_card_entries_form| %>
-                <li>
-                  <%= user_card_entries_form.label :entry_key %>
-                  <%= user_card_entries_form.text_field :entry_key %>
+            <p>
+              <%= f.label :description %>
+            </p><p>
+              <%= f.text_field :description %>
+            </p>
+           <br/>
 
-                  <%= user_card_entries_form.label :entry_value %>
-                  <%= user_card_entries_form.text_field :entry_value %>
-                </li>
-            <% end %>
-          </ul>
+          <h4>Your learning terms</h4>
+          <table>
+              <%= f.fields_for :user_card_entries do |user_card_entries_form| %>
+                <tr>
+                  <td><%= user_card_entries_form.text_field :entry_key %></td>
+                  <td><%= user_card_entries_form.text_field :entry_value %></td>
+                </tr>
+              <% end %>
 
-          <%= f.submit "Create cards", class: "btn btn-large btn-primary" %>
+          </table>
+          <table align="center" >
+            <tr>
+              <td align="center"><%= f.submit "Create cards", class: "btn btn-large btn-primary" %></td>
+            </tr>
+          </table>
+
       <% end %>
-    </div>
-  </div>
 
 </div>
