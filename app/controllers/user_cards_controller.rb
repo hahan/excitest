@@ -15,6 +15,7 @@ class UserCardsController < ApplicationController
 
   def show
     @user_card = UserCard.find( params[:id] )
+    @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 1)
   end
 
   private

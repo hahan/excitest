@@ -4,18 +4,25 @@
       <%= form_for(@user_card) do |f| %>
 
             <h4>About your learning set</h4>
-            <p>
-              <%= f.label :name %>
-            </p>
-            <p>
-              <%= f.text_field :name %>
-            </p>
+            <table>
+              <tr>
+                <td>
+                  <%= f.label :name %>
+                </td>
+                <td>
+                  <%= f.text_field :name %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <%= f.label :description %>
+                </td>
+                <td>
+                  <%= f.text_area :description %>
+                </td>
+              </tr>
+            </table>
 
-            <p>
-              <%= f.label :description %>
-            </p><p>
-              <%= f.text_field :description %>
-            </p>
            <br/>
 
           <h4>Your learning terms</h4>
@@ -23,7 +30,7 @@
               <%= f.fields_for :user_card_entries do |user_card_entries_form| %>
                 <tr>
                   <td><%= user_card_entries_form.text_field :entry_key %></td>
-                  <td><%= user_card_entries_form.text_field :entry_value %></td>
+                  <td><%= user_card_entries_form.text_area   :entry_value %></td>
                 </tr>
               <% end %>
 

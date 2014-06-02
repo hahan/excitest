@@ -1,16 +1,16 @@
+
+
 <% provide(:title, 'New cards - LearnBird') %>
-<div class="center hero-unit">
+
   <h1>
-    <%= @user_card.name %>
+   <%= @user_card.name %>
   </h1>
   <h2>
     <%= @user_card.description %>
   </h2>
 
   <% if @user_card.entries.any? %>
-      <ol>
-        <%= render partial: 'shared/card_entry_item', collection: @user_card.entries %>
-      </ol>
+        <%= render partial: 'shared/card_entry_item', collection: @user_card_entries %>
   <% end %>
 
-</div>
+  <%= will_paginate @user_card_entries, :page_links => false %>
