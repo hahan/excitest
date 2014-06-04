@@ -1,9 +1,28 @@
 <section class="container">
-  <div id="card">
-    <figure class="front"><%= card_entry_item.entry_key %></figure>
-    <figure class="back"><%= card_entry_item.entry_value %></figure>
+
+  <div class="flip">
+    <div class="card">
+      <div class="face front">
+        <%= card_entry_item.entry_key %>
+      </div>
+      <div class="face back">
+        <%= card_entry_item.entry_value %>
+      </div>
+    </div>
   </div>
+
 </section>
+
+<%= javascript_tag do %>
+        $(document).ready(function(){
+            $('.flip').click(function(){
+                $(this).find('.card').addClass('flipped').mouseleave(function(){
+                $(this).removeClass('flipped');
+            });
+            return false;
+            });
+        });
+<% end %>
 
 
 

@@ -1,16 +1,14 @@
-
-
 <% provide(:title, 'New cards - LearnBird') %>
 
-  <h1>
-   <%= @user_card.name %>
-  </h1>
-  <h2>
-    <%= @user_card.description %>
-  </h2>
+<h1>
+  <%= @user_card.name %>
+</h1>
+<h2>
+  <%= @user_card.description %>
+</h2>
 
-  <% if @user_card.entries.any? %>
-        <%= render partial: 'shared/card_entry_item', collection: @user_card_entries %>
-  <% end %>
+<% if @user_card.entries.any? %>
+    <%= render partial: 'shared/card_entry_item', collection: @user_card_entries %>
+<% end %>
 
-  <%= will_paginate @user_card_entries, :page_links => false %>
+<%= will_paginate @user_card_entries, :page_links => false %>
