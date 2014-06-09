@@ -8,7 +8,7 @@ describe "User visits the cards pages" do
 
     before { visit newcard_path }
 
-    it { should have_title ("New cards - LearnBird") }
+    it { should have_title ("New cards - Excitest") }
     it { should have_content ("About your learning set") }
     it { should have_text ("Name") }
     it { should have_text ("Description") }
