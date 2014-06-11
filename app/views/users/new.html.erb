@@ -52,34 +52,3 @@
   <% end %>
 
 </div>
-
-<%= javascript_tag do %>
-    $(document).ready(function () {
-        var counter = 0;
-        var table = $("#entries_table"),
-        button = $("#add_entries");
-
-        button.click( function () {
-            counter = $('#entries_table tr').length;
-            var newRow = $("<tr>");
-            var cols = "";
-
-            cols += '<td><input id="user_card_user_card_entries_attributes_' + counter + '_entry_key" name="user_card[user_card_entries_attributes][' + counter + '][entry_key]" type="text" /></td>';
-            cols += '<td><textarea id="user_card_user_card_entries_attributes_' + counter + '_entry_value" name="user_card[user_card_entries_attributes][' + counter + '][entry_value]"> </textarea></td>';
-
-            cols += '<td><input type="button" class="ibtnDel"  value="Delete"></td>';
-
-            newRow.append(cols);
-            table.append(newRow);
-            counter++;
-        });
-
-        $("table.order-list").on("click", ".ibtnDel", function (event){
-            $(this).closest("tr").remove();
-            counter -= 1
-        });
-
-    });
-
-
-<% end %>
