@@ -4,10 +4,14 @@
   <h2>
     A simple self learning tool that makes learning and tests exciting!
   </h2>
-  <%= link_to "Create cards", newcard_path, class: "btn btn-large btn-primary" %>
+
 
   <% if not signed_in? %>
-      <%= link_to "Signup", signup_path, class: "btn btn-large btn-primary" %>
+      <%= link_to "Sign in", signin_path, class: "btn btn-large btn-primary" %>
+
+      <%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
+  <% else %>
+      <%= link_to "Create cards", newcard_path, class: "btn btn-large btn-primary" %>
   <% end %>
 
 
