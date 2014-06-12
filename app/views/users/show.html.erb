@@ -8,4 +8,15 @@
 		</h1>
 	</section>
   </aside>
+
+  <div class="span8">
+    <% if @user.user_cards.any? %>
+      <h4>Learning sets (<%= @user.user_cards.count %>)</h4>
+      <ol class="usercards">
+        <%= render @user_cards %>
+      </ol>
+      <%= will_paginate @user_cards %>
+    <% end %>
+  </div>
+
 </div>

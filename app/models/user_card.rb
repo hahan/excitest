@@ -1,5 +1,8 @@
 class UserCard < ActiveRecord::Base
   belongs_to :user
+  
+  default_scope -> { order('created_at ASC') }
+
   has_many :user_card_entries
   accepts_nested_attributes_for :user_card_entries
 

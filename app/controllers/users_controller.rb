@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :signed_in_user, only: [:show, :edit, :update]
+  before_action :correct_user,   only: [:show, :edit, :update]
 
   def new
     @user = User.new
@@ -16,7 +18,8 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find( params[:id] ) 
+   	@user = User.find( params[:id] ) 
+    @user_cards = @user.user_cards.paginate(page: params[:page])
   end
 
   private
@@ -26,4 +29,8 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
 
+   def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
 end
