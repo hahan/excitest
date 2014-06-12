@@ -4,6 +4,10 @@ describe "User visits the cards pages" do
 
   subject { page }
 
+  let(:user) { FactoryGirl.create(:user) }
+
+  before { sign_in user }
+
   describe "User visits the new cards pages" do
 
     before { visit newcard_path }
@@ -34,8 +38,6 @@ describe "User visits the cards pages" do
       fill_in "user_card[user_card_entries_attributes][1][entry_key]", with: "word1"
       fill_in "user_card[user_card_entries_attributes][1][entry_value]", with: "word2"
 
-      fill_in "user_card[user_card_entries_attributes][2][entry_key]", with: "word1"
-      fill_in "user_card[user_card_entries_attributes][2][entry_value]", with: "word2"
     end
 
     it "should create a user card" do

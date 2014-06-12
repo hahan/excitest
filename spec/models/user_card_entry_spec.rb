@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe UserCardEntry do
-  let(:user_card) { FactoryGirl.create(:user_card) }
+  let(:user) { FactoryGirl.create(:user) }
 
   before do
-    @user_card_entry =  user_card.user_card_entries.build( entry_key:"word1", entry_value:"description1" )
+    @user_card = UserCard.new( name: "English to german translation", 
+      description: "English to german translation words", user_id: user.id )
+    @user_card_entry =  @user_card.user_card_entries.build( entry_key:"word1", entry_value:"description1" )
   end
 
   subject { @user_card_entry }
