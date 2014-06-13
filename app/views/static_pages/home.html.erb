@@ -7,6 +7,15 @@
 
 
   <% if not signed_in? %>
+
+        <% @user_cards.each do |user_card| %>
+            <li>
+              <%= link_to user_card.name, { :controller => :user_cards, :action => :public_card, :id => user_card.id }  %>
+            </li>
+        <% end %>
+      <%= will_paginate @user_cards, :page_links => false %>
+      <br>
+
       <%= link_to "Sign in", signin_path, class: "btn btn-large btn-primary" %>
 
       <%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
