@@ -33,6 +33,19 @@ describe "User visits various profile pages" do
       end
 
     end
+  end
+
+  describe "User visits the profile page after creating cards" do
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:user_card) { FactoryGirl.create(:user_card, user:user) }
+
+    before do
+      sign_in user
+      visit user_path(user)
+    end
+
+    it { should have_text (user.name) }
+    it { should have_text (user_card.name) }
 
   end
 

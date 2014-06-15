@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+#TODO Add tests for edit and delete cards
+
 describe "User visits the cards pages" do
 
   subject { page }
