@@ -1,3 +1,4 @@
 <li>
   <%= link_to user_card.name, user_card %>
 </li>
+<%= link_to "Edit", { :controller => :user_cards, :action => :edit, :id => user_card.id }, class: "btn btn-large btn-primary" %>

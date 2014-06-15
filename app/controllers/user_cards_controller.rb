@@ -1,6 +1,6 @@
 class UserCardsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :correct_user,   only: [ :destroy ]
 
   def new
     @user_card = UserCard.new
@@ -16,6 +16,35 @@ class UserCardsController < ApplicationController
     end
   end
 
+  def update
+    @user_card =  current_user.user_cards.find( params[:id] )
+
+    if @user_card.update_attributes( user_card_params )
+      #Find the entry to be deleted, its the one that comes in with :id but no entry key or value
+      user_card_entries_attributes = user_card_params[:user_card_entries_attributes ]
+      user_card_entries_attributes.each do |index, values|
+        if not values[:entry_key]
+          @user_card.user_card_entries.destroy(values[:id])
+        end
+      end
+
+      flash[:success] = "Card updated"
+      redirect_to @user_card
+    else
+      render 'edit'
+    end
+  end
+
+
+  def delete
+    @user_card =  current_user.user_cards.find( params[:id] )
+    if @user_card.destroy
+      flash[:success] = "Card deleted"
+      redirect_to current_user
+    end
+  end
+
+
   def public_card
     @user_card =  UserCard.find( params[:id] )
     @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 1)
@@ -25,6 +54,11 @@ class UserCardsController < ApplicationController
   def show
     @user_card =  current_user.user_cards.find( params[:id] )
     @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 1)
+  end
+
+  def edit
+    @user_card =  current_user.user_cards.find( params[:id] )
+    @user_card_entries = @user_card.user_card_entries.all
   end
 
   private
