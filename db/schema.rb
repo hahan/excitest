@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611164525) do
+ActiveRecord::Schema.define(version: 20140615083616) do
 
   create_table "user_card_entries", force: true do |t|
     t.string   "entry_key"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140611164525) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.boolean  "admin",           default: false
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"

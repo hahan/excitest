@@ -13,6 +13,8 @@ describe "User" do
   it { should respond_to(:password_confirmation)}
   it { should respond_to(:remember_token)}
   it { should respond_to(:authenticate)}
+  it { should respond_to(:admin) }
+  it { should_not be_admin }
 
   it { should be_valid }
 
@@ -22,7 +24,7 @@ describe "User" do
   end
 
   describe "User with long name" do
-    before { @user.name = "s" * 21 }
+    before { @user.name = "s" * 211 }
     it { should_not be_valid }
   end
 
@@ -82,6 +84,14 @@ describe "User" do
 
   end
 
+  describe "User with admin role" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { should be_admin }
+  end
 
   describe "return value of the authenticate method" do
     before { @user.save }
