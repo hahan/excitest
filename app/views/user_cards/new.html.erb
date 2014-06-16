@@ -1,27 +1,19 @@
 <% provide(:title, 'New cards - Excitest') %>
 
-<div>
-  <%= form_for(@user_card) do |f| %>
+<div class="l-box pure-u-1 pure-u-md-2-5">
+  <%= form_for(@user_card, html: {class: "pure-form pure-form-stacked"}) do |f| %>
 
-      <h4>About your learning set</h4>
-      <table>
-        <tr>
-          <td>
-            <%= f.label :name %>
-          </td>
-          <td>
-            <%= f.text_field :name %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= f.label :description %>
-          </td>
-          <td>
-            <%= f.text_area :description %>
-          </td>
-        </tr>
-      </table>
+      <h3>About your learning set</h3>
+
+      <fieldset>
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </fieldset>
+
 
       <br/>
 

@@ -9,8 +9,8 @@ describe "AuthenticationPages" do
   describe "User visits the signin page" do
     it { should have_title ("Sign in - Excitest") }
 
-    it { should have_text ("Email") }
-    it { should have_text ("Password") }
+    it { should have_field ("Email") }
+    it { should have_field ("Password") }
     it { should have_button ("Sign in") }
   end
 

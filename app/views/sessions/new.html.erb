@@ -1,37 +1,17 @@
 <% provide(:title, 'Sign in - Excitest') %>
 
-<div>
-  <%= form_for( :session, url:sessions_path ) do |f| %>
-
+<div class="l-box-center pure-u-1 pure-u-md-1-5">
+  <%= form_for( :session, url:sessions_path, html: {class: "pure-form pure-form-stacked"} ) do |f| %>
       <h4>Sign in</h4>
-      <table>
-        <tr>
-          <td>
-            <%= f.label :email %>
-          </td>
-          <td>
-            <%= f.text_field :email %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= f.label :password %>
-          </td>
-          <td>
-            <%= f.password_field :password %>
-          </td>
-        </tr>
-      </table>
 
-      <br/>
+      <fieldset>
 
-      <br/>
-      <table align="center">
-        <tr>
-          <td align="center"><%= f.submit "Sign in", class: "btn btn-large btn-primary" %></td>
-        </tr>
-      </table>
+        <%= f.text_field :email, placeholder: "Email" %>
 
+        <%= f.password_field :password, placeholder: "Password" %>
+
+        <%= f.submit "Sign in", class: "pure-button pure-button-primary" %>
+      </fieldset>
       <p>New user? <%= link_to "Sign up now!", signup_path %></p>
 
   <% end %>

@@ -1,22 +1,16 @@
 <% provide(:title, @user.name) %>
 
-<div class="row">
-  <aside class="span4">
-    <section>
-		<h1>
-			<%= @user.name %>
-		</h1>
-	</section>
-  </aside>
 
-  <div class="span8">
-    <% if @user.user_cards.any? %>
-      <h4>Learning sets (<%= @user.user_cards.count %>)</h4>
+<h1>
+  <%= @user.name %>
+</h1>
+
+<% if @user.user_cards.any? %>
+    <div class="l-box">
+      <h3>Learning sets (<%= @user.user_cards.count %>)</h3>
       <ol class="usercards">
         <%= render @user_cards %>
       </ol>
       <%= will_paginate @user_cards %>
-    <% end %>
-  </div>
-
-</div>
+    </div>
+<% end %>

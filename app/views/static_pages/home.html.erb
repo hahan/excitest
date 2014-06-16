@@ -1,28 +1,43 @@
 <% provide(:title, 'Excitest') %>
-<div class="center hero-unit">
-  <h1>Excitest</h1>
-  <h2>
-    A simple self learning tool that makes learning and tests exciting!
-  </h2>
+
+<% if not signed_in? %>
+    <div class="splash-row">
+      <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1-2">
+          <div class="l-box">
+            <h2 class="splash-head" style="white-space: normal; float: none; display: block; position: static;">
+              A simple self learning tool that makes learning and tests exciting!
+            </h2>
+
+          </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-md-1-2 left-splash">
+          <%= render 'users/new' %>
+        </div>
+
+      </div>
+    </div>
 
 
-  <% if not signed_in? %>
+    <% if @user_cards.entries.any? %>
+     <div class="ribbon content">
+      <h2 class="content-head-ribbon">Try out some leaning sets</h2>
 
-        <% @user_cards.each do |user_card| %>
-            <li>
-              <%= link_to user_card.name, { :controller => :user_cards, :action => :public_card, :id => user_card.id }  %>
-            </li>
+      <div class="pure-g">
+        <% @user_cards.each_with_index do |user_card, index| %>
+            <% if index > 3 %>
+                <% break %>
+            <% end %>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+              <h3 class="content-head-ribbon">
+                <i class="fa fa-rocket"></i>
+                <%= link_to user_card.name, { :controller => :user_cards, :action => :public_card, :id => user_card.id }  %>
+              </h3>
+            </div>
         <% end %>
-      <%= will_paginate @user_cards, :page_links => false %>
-      <br>
 
-      <%= link_to "Sign in", signin_path, class: "btn btn-large btn-primary" %>
-
-      <%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
-  <% else %>
-      <%= link_to "Create cards", newcard_path, class: "btn btn-large btn-primary" %>
-  <% end %>
-
-
-
-</div>
+      </div>
+    </div>
+<% end %>
+<% end %>

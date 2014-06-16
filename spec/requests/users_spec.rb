@@ -8,13 +8,12 @@ describe "User visits various profile pages" do
     before { visit signup_path }
 
     it { should have_title ("Signup - Excitest") }
-    it { should have_content ("New profile") }
 
-    it { should have_text ("Name") }
-    it { should have_text ("Email") }
-    it { should have_text ("Password") }
-    it { should have_text ("Password confirmation") }
-    it { should have_button ("Signup") }
+    it { should have_field ("Name") }
+    it { should have_field ("Email") }
+    it { should have_field ("Password") }
+    it { should have_field ("Password confirmation") }
+    it { should have_button ("Create account") }
   end
 
   describe "User with valid inputs should signup" do
