@@ -11,4 +11,6 @@
     <%= render partial: 'shared/card_entry_item', collection: @user_card_entries %>
 <% end %>
 
-<%= will_paginate @user_card_entries, :page_links => false %>
+<div class="digg_pagination center">
+<%= will_paginate @user_card_entries, :page_links => false%>
+</div>
