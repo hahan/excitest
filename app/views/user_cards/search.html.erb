@@ -1,0 +1,19 @@
+<% provide(:title, 'Search cards - Excitest') %>
+
+
+<div class="digg_pagination center">
+  <%= will_paginate %>
+</div>
+
+<ul class="users">
+<% if !@user_cards.nil? and @user_cards.entries.any? %>
+        <% @user_cards.each_with_index do |user_card, index| %>
+          <li>
+                <%= link_to user_card.name, { :controller => :user_cards, :action => :public_card, :id => user_card.id }  %>
+          </li>
+        <% end %>
+<% else %>
+  <br><br>
+  No user cards found.
+<% end %>
+</ul>

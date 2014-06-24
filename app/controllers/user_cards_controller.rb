@@ -35,6 +35,21 @@ class UserCardsController < ApplicationController
     end
   end
 
+  def search
+    if params[:search].nil?
+      return nil
+    end
+
+    if params[:search][:search_term].nil?
+      return nil
+    end
+
+    if params[:search][:search_term].blank?
+      return nil
+    end
+
+    @user_cards =  UserCard.where("name LIKE ? or description LIKE ?", "%#{params[:search][:search_term]}%", "%#{params[:search][:search_term]}%").paginate(page: params[:page], :per_page => 5)
+  end
 
   def delete
     @user_card =  current_user.user_cards.find( params[:id] )

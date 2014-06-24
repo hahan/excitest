@@ -8,6 +8,11 @@
       <%end%>
       <nav>
         <ul class="nav navbar-nav pull-right">
+          <li>
+            <%= form_for( :search, url:search_cards_path,  html: {class: "pure-form pure-form-stacked"}, method: "get" ) do |f| %>
+                  <%= f.text_field :search_term, placeholder: "Search Excitest" %>
+            <% end %>
+          </li>
           <% if signed_in? %>
               <li><%= link_to "Home", current_user %></li>
               <li><%= link_to "Create sets", newcard_path %></li>
@@ -28,6 +33,7 @@
               <li><%= link_to "Home", root_path %></li>
               <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
+
         </ul>
       </nav>
     </div>

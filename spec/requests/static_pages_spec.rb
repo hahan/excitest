@@ -22,4 +22,17 @@ describe "User visiting the website" do
 
   end
 
+  describe "The user searching for cards" do
+    let (:submit) { "Create cards" }
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:user_card) { FactoryGirl.create(:user_card, user:user) }
+
+    before do
+      visit root_path
+      fill_in "search_search_term", with: "English"
+    end
+
+    it { should have_field ("search_search_term") }
+  end
+
 end

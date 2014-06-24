@@ -7,6 +7,7 @@ Learnbird::Application.routes.draw do
   match '/public_card', to: 'user_cards#public_card', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/newcard', to: 'user_cards#new', via: 'get'
+  match '/search_cards', to: 'user_cards#search', via: 'get'
   match '/deletecard', to: 'user_cards#delete', via: 'delete'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
