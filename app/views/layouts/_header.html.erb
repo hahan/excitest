@@ -9,7 +9,7 @@
       <nav>
         <ul class="nav navbar-nav pull-right">
           <li>
-            <%= form_for( :search, url:search_cards_path,  html: {class: "pure-form pure-form-stacked"}, method: "get" ) do |f| %>
+            <%= form_for( :search, id:"search_form", url:search_cards_path,  html: {class: "pure-form pure-form-stacked"}, method: "get" ) do |f| %>
                   <%= f.text_field :search_term, placeholder: "Search Excitest" %>
             <% end %>
           </li>

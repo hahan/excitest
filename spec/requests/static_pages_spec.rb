@@ -27,12 +27,43 @@ describe "User visiting the website" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:user_card) { FactoryGirl.create(:user_card, user:user) }
 
-    before do
-      visit root_path
-      fill_in "search_search_term", with: "English"
+    describe "The searched card is present" do
+      before do
+        visit root_path
+        fill_in "search_search_term", with: "English"
+
+        form = all("form").first
+        class << form
+          def submit!
+            Capybara::RackTest::Form.new(driver, native).submit({})
+          end
+        end
+        form.submit!
+      end
+      it { should have_content("English to german translation") }
+      it { should have_field ("search_search_term") }
     end
 
-    it { should have_field ("search_search_term") }
+    describe "The searched card is not present" do
+      before do
+        visit root_path
+        fill_in "search_search_term", with: "No such cards"
+
+        form = all("form").first
+        class << form
+          def submit!
+            Capybara::RackTest::Form.new(driver, native).submit({})
+          end
+        end
+        form.submit!
+      end
+      it { should have_content("No user cards found.") }
+
+    end
   end
+
+
+
+
 
 end
