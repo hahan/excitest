@@ -52,7 +52,11 @@ class UserCardsController < ApplicationController
   end
 
   def delete
-    @user_card =  current_user.user_cards.find( params[:id] )
+    if current_user.admin?
+      @user_card =  UserCard.find( params[:id] )
+    else
+      @user_card =  current_user.user_cards.find( params[:id] )
+    end
     if @user_card.destroy
       flash[:success] = "Card deleted"
       redirect_to current_user
@@ -67,13 +71,22 @@ class UserCardsController < ApplicationController
   end
 
   def show
-    @user_card =  current_user.user_cards.find( params[:id] )
-    @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 1)
+    if current_user.admin?
+      public_card
+    else
+      @user_card =  current_user.user_cards.find( params[:id] )
+      @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 1)
+    end
   end
 
   def edit
-    @user_card =  current_user.user_cards.find( params[:id] )
-    @user_card_entries = @user_card.user_card_entries.all
+    if current_user.admin?
+      @user_card =  UserCard.find( params[:id] )
+      @user_card_entries = @user_card.user_card_entries.all
+    else
+      @user_card =  current_user.user_cards.find( params[:id] )
+      @user_card_entries = @user_card.user_card_entries.all
+    end
   end
 
   private

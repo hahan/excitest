@@ -55,7 +55,7 @@
           </table>
 
       <% end %>
-      <%= link_to "Delete entire set", { :controller => :user_cards, :action => :delete, :id =>  @user_card.id }, method:"delete", class: "btn btn-primary", align:"left" %>
+      <%= link_to "Delete entire set", { :controller => :user_cards, :action => :delete, :id =>  @user_card.id }, method:"delete", data: { confirm: "You are about to delete the entire set, are you sure?" }, class: "btn btn-primary", align:"left" %>
 
 
     </div>
