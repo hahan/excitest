@@ -110,4 +110,25 @@ describe "User" do
 
   end
 
+  describe "User cards association" do
+    before { @user.save }
+
+    let!(:cards_one) do
+      FactoryGirl.create(:user_card, user: @user, created_at: 1.day.ago)
+    end
+    let!(:cards_two) do
+      FactoryGirl.create(:user_card, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should destroy associated user cards" do
+      usercards = @user.user_cards.to_a
+      @user.destroy
+      expect(usercards).not_to be_empty
+      usercards.each do |usercard|
+        expect(UserCard.where(id: usercard.id)).to be_empty
+      end
+    end
+
+  end
+
 end
