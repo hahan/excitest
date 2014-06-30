@@ -1,4 +1,4 @@
-<% provide(:title, 'New cards - Excitest') %>
+<% provide(:title, 'Edit list - Excitest') %>
 
 <h1>
   <%= @user_card.name %>
@@ -11,7 +11,7 @@
     <div class="l-box pure-u-1 pure-u-md-2-5">
       <%= form_for(@user_card, html: {class: "pure-form pure-form-stacked"}) do |f| %>
 
-          <h3>About your learning set</h3>
+          <h3>About your learning list</h3>
 
           <fieldset>
 
@@ -24,7 +24,7 @@
 
           <br/>
 
-          <h3>Your learning terms</h3>
+          <h3>Your learning list terms</h3>
           <table id="entries_table" class="order-list">
                 <% counter = 1 %>
                 <%= f.fields_for :user_card_entries do |user_card_entries_form| %>
@@ -49,13 +49,14 @@
 
           <table align="center">
             <tr>
-              <td align="center"><%= f.submit "Update cards", class: "btn btn-large btn-primary" %></td>
+              <td align="center"><%= link_to "View", { :controller => :user_cards, :action => :show}, class: "btn btn-large btn-primary"  %></td>
+              <td align="center"><%= f.submit "Update", class: "btn btn-large btn-primary" %></td>
             </tr>
 
           </table>
 
       <% end %>
-      <%= link_to "Delete entire set", { :controller => :user_cards, :action => :delete, :id =>  @user_card.id }, method:"delete", data: { confirm: "You are about to delete the entire set, are you sure?" }, class: "btn btn-primary", align:"left" %>
+      <%= link_to "Delete entire list", { :controller => :user_cards, :action => :delete, :id =>  @user_card.id }, method:"delete", data: { confirm: "You are about to delete the entire list, are you sure?" }, class: "btn btn-primary", align:"left" %>
 
 
     </div>

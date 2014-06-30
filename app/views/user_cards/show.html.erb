@@ -1,4 +1,4 @@
-<% provide(:title, 'New cards - Excitest') %>
+<% provide(:title, 'Learning list - Excitest') %>
 
 <h1>
   <%= @user_card.name %>
@@ -8,9 +8,23 @@
 </h2>
 
 <% if @user_card.entries.any? %>
-    <%= render partial: 'shared/card_entry_item', collection: @user_card_entries %>
+    <div class="l-box pure-u-1 pure-u-md-2-5 center">
+    <table id="entries_table" class="table table-striped">
+      <% @user_card_entries.each do |user_card_entry| %>
+        <tr>
+            <td><%= user_card_entry.entry_key %></td>
+            <td><%= user_card_entry.entry_value %></td>
+          </tr>
+      <%end%>
+    </table>
+
+    <div class="digg_pagination center">
+      <%= will_paginate @user_card_entries%>
+    </div>
+
+    <%= link_to "Flash cards", { :controller => :user_cards, :action => :flash_cards, :id => @user_card.id }, class: "btn btn-large btn-primary" %>
+    <%= link_to "Edit", { :controller => :user_cards, :action => :edit, :id => @user_card.id }, class: "btn btn-large btn-primary" %>
+    </div>
 <% end %>
 
-<div class="digg_pagination center">
-<%= will_paginate @user_card_entries, :page_links => false%>
-</div>
+

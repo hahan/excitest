@@ -1,0 +1,16 @@
+<% provide(:title, 'Flash cards - Excitest') %>
+
+<h1>
+  <%= @user_card.name %>
+</h1>
+<h2>
+  <%= @user_card.description %>
+</h2>
+
+<% if @user_card.entries.any? %>
+    <%= render partial: 'shared/card_entry_item', collection: @user_card_entries %>
+<% end %>
+
+<div class="digg_pagination center">
+<%= will_paginate @user_card_entries, :page_links => false%>
+</div>

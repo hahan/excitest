@@ -66,11 +66,20 @@ class UserCardsController < ApplicationController
 
   def public_card
     @user_card =  UserCard.find( params[:id] )
-    @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 1)
+    @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 10)
     render "show"
   end
 
   def show
+    if current_user.admin?
+      public_card
+    else
+      @user_card =  current_user.user_cards.find( params[:id] )
+      @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 10)
+    end
+  end
+
+  def flash_cards
     if current_user.admin?
       public_card
     else

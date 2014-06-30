@@ -15,18 +15,18 @@ describe "User visits the cards pages" do
     before { visit newcard_path }
 
     it { should have_title ("New cards - Excitest") }
-    it { should have_content ("About your learning set") }
+    it { should have_content ("About your learning list") }
     it { should have_text ("Name") }
     it { should have_text ("Description") }
 
-    it { should have_content ("Your learning terms") }
-    it { should have_button ("Create cards") }
+    it { should have_content ("Your learning list terms") }
+    it { should have_button ("Create") }
 
   end
 
   describe "User creates a new card" do
 
-    let (:submit) { "Create cards" }
+    let (:submit) { "Create" }
 
     before do
       visit newcard_path

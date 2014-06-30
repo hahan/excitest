@@ -3,7 +3,7 @@
 <div class="l-box pure-u-1 pure-u-md-2-5">
   <%= form_for(@user_card, html: {class: "pure-form pure-form-stacked"}) do |f| %>
 
-      <h3>About your learning set</h3>
+      <h3>About your learning list</h3>
 
       <fieldset>
 
@@ -17,7 +17,7 @@
 
       <br/>
 
-      <h4>Your learning terms</h4>
+      <h4>Your learning list terms</h4>
       <table id="entries_table" class="order-list">
         <%= f.fields_for :user_card_entries do |user_card_entries_form| %>
             <tr>
@@ -36,7 +36,7 @@
       <br/>
       <table align="center">
         <tr>
-          <td align="center"><%= f.submit "Create cards", class: "btn btn-large btn-primary" %></td>
+          <td align="center"><%= f.submit "Create", class: "btn btn-large btn-primary" %></td>
         </tr>
       </table>
 
