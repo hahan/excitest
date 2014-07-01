@@ -1,6 +1,6 @@
 class UserCardsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: [ :destroy ]
+  before_action :signed_in_user, only: [:edit, :update, :delete, :create, :destroy]
+  before_action :correct_user,   only: [ :edit, :update, :delete, :destroy ]
 
   def new
     @user_card = UserCard.new
@@ -58,7 +58,7 @@ class UserCardsController < ApplicationController
       @user_card =  current_user.user_cards.find( params[:id] )
     end
     if @user_card.destroy
-      flash[:success] = "Card deleted"
+      flash[:success] = "List deleted"
       redirect_to current_user
     end
   end
@@ -66,30 +66,32 @@ class UserCardsController < ApplicationController
 
   def public_card
     @user_card =  UserCard.find( params[:id] )
-    @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 10)
-    render "show"
+    @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 1)
+    render "flash_cards"
   end
 
   def show
-    if current_user.admin?
-      public_card
-    else
-      @user_card =  current_user.user_cards.find( params[:id] )
+      @user_card =  current_user.user_cards.find_by( id: params[:id] )
+
+      if @user_card.nil? && current_user.admin?
+        @user_card =  UserCard.find( params[:id] )
+      end
+
       @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 10)
-    end
   end
 
   def flash_cards
-    if current_user.admin?
-      public_card
-    else
-      @user_card =  current_user.user_cards.find( params[:id] )
+      @user_card =  current_user.user_cards.find_by( id: params[:id] )
+
+      if @user_card.nil? && current_user.admin?
+        @user_card =  UserCard.find( params[:id] )
+      end
+
       @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 1)
-    end
   end
 
   def edit
-    if current_user.admin?
+    if current_user && current_user.admin?
       @user_card =  UserCard.find( params[:id] )
       @user_card_entries = @user_card.user_card_entries.all
     else
@@ -106,6 +108,6 @@ class UserCardsController < ApplicationController
 
    def correct_user
       @user_card = current_user.user_cards.find_by(id: params[:id])
-      redirect_to root_url if @micropost.nil?
+      redirect_to root_url if @user_card.nil?
    end
 end
