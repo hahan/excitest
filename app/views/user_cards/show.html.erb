@@ -1,11 +1,11 @@
 <% provide(:title, 'Learning list - Excitest') %>
 
-<h1>
+<h3>
   <%= @user_card.name %>
-</h1>
-<h2>
+</h3>
+<h4>
   <%= @user_card.description %>
-</h2>
+</h4>
 
 <% if @user_card.entries.any? %>
     <div class="l-box pure-u-1 pure-u-md-2-5 center">
@@ -18,8 +18,10 @@
       <%end%>
     </table>
 
-    <div class="digg_pagination center">
-      <%= will_paginate @user_card_entries%>
+    <div class="pagination pagination-centered">
+      <ul>
+        <li><%= will_paginate @user_card_entries%></li>
+      </ul>
     </div>
 
     <%= link_to "Flash cards", { :controller => :user_cards, :action => :flash_cards, :id => @user_card.id }, class: "btn btn-large btn-primary" %>

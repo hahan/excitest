@@ -1,43 +1,39 @@
 <% provide(:title, 'Excitest') %>
 
-<% if not signed_in? %>
-    <div class="splash-row">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-2">
-          <div class="l-box">
-            <h2 class="splash-head" style="white-space: normal; float: none; display: block; position: static;">
-              A simple self learning tool that makes learning and tests exciting!
-            </h2>
 
-          </div>
+<% if not signed_in? %>
+    <div class="row-fluid">
+        <div class="jumbotron masthead span8 home-upper-span">
+          <p>A simple self learning tool that makes learning exciting!</p>
         </div>
 
-        <div class="pure-u-1 pure-u-md-1-2 left-splash">
+        <div class="span4 home-upper-span">
           <%= render 'users/new' %>
         </div>
-
-      </div>
     </div>
 
+    <hr class="soften"/>
 
-    <% if @user_cards.entries.any? %>
-     <div class="ribbon content">
-      <h2 class="content-head-ribbon">Try out some learning lists</h2>
+    <div class="row-fluid">
+      <h3 class="welcome__heading">Try out some learning lists</h3>
 
-      <div class="pure-g">
+      <div class="row-fluid">
         <% @user_cards.each_with_index do |user_card, index| %>
             <% if index > 3 %>
                 <% break %>
             <% end %>
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-              <h3 class="content-head-ribbon">
-                <i class="fa fa-rocket"></i>
-                <%= link_to user_card.name, { :controller => :user_cards, :action => :public_card, :id => user_card.id }  %>
+            <div class="span3">
+              <h3 class="try-lists">
+                <%= link_to user_card.name, {:controller => :user_cards, :action => :public_card, :id => user_card.id} %>
               </h3>
             </div>
         <% end %>
 
       </div>
     </div>
+    </div>
+
 <% end %>
-<% end %>
+
+
+

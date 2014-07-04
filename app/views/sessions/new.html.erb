@@ -1,6 +1,6 @@
 <% provide(:title, 'Sign in - Excitest') %>
 
-<div class="l-box-center pure-u-1 pure-u-md-1-5">
+<div class="container">
   <%= form_for( :session, url:sessions_path, html: {class: "pure-form pure-form-stacked"} ) do |f| %>
       <h4>Sign in</h4>
 
@@ -10,7 +10,7 @@
 
         <%= f.password_field :password, placeholder: "Password" %>
 
-        <%= f.submit "Sign in", class: "pure-button pure-button-primary" %>
+        <%= f.submit "Sign in", class: "btn btn-primary" %>
       </fieldset>
       <p>New user? <%= link_to "Sign up now!", signup_path %></p>
 

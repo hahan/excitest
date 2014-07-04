@@ -15,6 +15,9 @@ group :development, :test do
   gem 'spork-rails', '4.0.0'
 end
 
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'
