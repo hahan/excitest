@@ -9,7 +9,7 @@ describe "User visiting the website" do
 
     it { should have_title ("Excitest") }
     it { should have_content ("Excitest") }
-    it { should have_content ("A simple self learning tool that makes learning and tests exciting!") }
+    it { should have_content ("A simple self learning tool that makes learning exciting!") }
 
   end
 
@@ -18,7 +18,7 @@ describe "User visiting the website" do
 
     it { should have_title ("About - Excitest") }
     it { should have_content ("About Excitest") }
-    it { should have_content ("A simple self learning tool that makes learning and tests exciting!") }
+    it { should have_content ("A simple self learning tool that makes learning exciting!") }
 
   end
 

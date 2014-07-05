@@ -1,20 +1,23 @@
 <% provide(:title, @user.name) %>
 
+<div class="row-fluid">
 
-<h1>
-  <%= @user.name %>
-</h1>
+  <div class="span4">
+    <h3>
+      <%= @user.name %>
+    </h3>
 
-<h2>
-  <%= @user.email%>
-</h2>
-
-<% if @user.user_cards.any? %>
-    <div class="l-box">
-      <h3>Your learning lists (<%= @user.user_cards.count %>)</h3>
-      <ol class="usercards">
-        <%= render @user_cards %>
-      </ol>
-      <%= will_paginate @user_cards %>
-    </div>
-<% end %>
+    <h4>
+      <%= @user.email %>
+    </h4>
+  </div>
+  <div class="span8">
+    <% if @user.user_cards.any? %>
+        <h3>Your learning lists (<%= @user.user_cards.count %>)</h3>
+        <ol class="usercards">
+          <%= render @user_cards %>
+        </ol>
+        <%= will_paginate @user_cards %>
+    <% end %>
+  </div>
+</div>
