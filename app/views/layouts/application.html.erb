@@ -16,11 +16,7 @@
 <%= render 'layouts/header' %>
 
 
-  <% flash.each do |key, value| %>
-    <div id="error_explanation">
-        <div class="alert alert-<%= key %>"><%= value %></div>
-    </div>
-  <% end %>
+
 
   <div class="container-fluid">
       <%= yield %>

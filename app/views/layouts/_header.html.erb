@@ -19,7 +19,7 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-          <%= form_for(:search, id: "search_form", url: search_cards_path, html: {class: "navbar-form navbar-left "}, method: "get") do |f| %>
+          <%= form_for(:search, id: "search_form", url: search_cards_path, html: {class: "navbar-form navbar-left", role: "search"}, method: "get") do |f| %>
               <div class="form-group">
                 <%= f.text_field :search_term, placeholder: "Search Excitest", class: "form-control" %>
               </div>

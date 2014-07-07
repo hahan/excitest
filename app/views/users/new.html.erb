@@ -1,3 +1,8 @@
 <% provide(:title, 'Signup - Excitest') %>
+<% provide(:context, 'signup') %>
 
-<%= render 'users/new' %>
+<div class="col-xs-2 col-centered">
+    <h4>Create new account</h4>
+    <%= render 'users/new' %>
+    <p>Already have an account? <%= link_to "Log in", signin_path %> </p>
+</div>
