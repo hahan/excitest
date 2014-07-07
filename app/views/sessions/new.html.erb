@@ -1,12 +1,12 @@
 <% provide(:title, 'Log in - Excitest') %>
 
-<div class="col-xs-2 col-centered">
+<div class="col-xs-6 col-md-4 col-centered">
   <% flash.each do |key, value| %>
       <div id="error_explanation">
         <div class="alert alert-<%= key %>"><%= value %></div>
       </div>
   <% end %>
-  
+
   <%= form_for(:session, url: sessions_path, html: {class: "form-horizontal", role: "form"}) do |f| %>
       <h4>Log in</h4>
 
