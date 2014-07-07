@@ -1,32 +1,30 @@
 <% provide(:title, 'Learning list - Excitest') %>
 
-<h3>
-  <%= @user_card.name %>
-</h3>
-<h4>
-  <%= @user_card.description %>
-</h4>
+<div class="row">
+  <div class="col-xs-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user_card.name %></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= @user_card.description %></p>
+      </div>
 
-<% if @user_card.entries.any? %>
-    <div class="l-box pure-u-1 pure-u-md-2-5 center">
-    <table id="entries_table" class="table table-striped">
-      <% @user_card_entries.each do |user_card_entry| %>
-        <tr>
-            <td><%= user_card_entry.entry_key %></td>
-            <td><%= user_card_entry.entry_value %></td>
-          </tr>
-      <%end%>
-    </table>
+      <% if @user_card.entries.any? %>
 
-    <div class="pagination pagination-centered">
-      <ul>
-        <li><%= will_paginate @user_card_entries%></li>
-      </ul>
+          <table id="entries_table" class="table">
+            <% @user_card_entries.each do |user_card_entry| %>
+                <tr>
+                  <td><%= user_card_entry.entry_key %></td>
+                  <td><%= user_card_entry.entry_value %></td>
+                </tr>
+            <% end %>
+          </table>
+      <% end %>
     </div>
-
-    <%= link_to "Flash cards", { :controller => :user_cards, :action => :flash_cards, :id => @user_card.id }, class: "btn btn-large btn-primary" %>
-    <%= link_to "Edit", { :controller => :user_cards, :action => :edit, :id => @user_card.id }, class: "btn btn-large btn-primary" %>
-    </div>
-<% end %>
+    <%= link_to "Flash cards", {:controller => :user_cards, :action => :flash_cards, :id => @user_card.id}, class: "btn btn-large btn-primary" %>
+    <%= link_to "Edit", {:controller => :user_cards, :action => :edit, :id => @user_card.id}, class: "btn btn-large btn-primary" %>
+  </div>
+</div>
 
 

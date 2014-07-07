@@ -1,24 +1,30 @@
-  <section class="card-container">
-    <div id="flip" class="flip">
-      <div class="card  box">
-        <div class="face front">
-          <div class="table">
-            <div class="td">
-              <%= card_entry_item.entry_key %>
-            </div>
+<section class="card-container">
+  <div id="flip" class="flip">
+    <div class="card  box">
+      <div class="face front">
+        <div class="table">
+          <div class="td">
+            <%= card_entry_item.entry_key %>
           </div>
         </div>
-        <div class="face back">
-          <div class="table">
-            <div class="td">
-              <%= card_entry_item.entry_value %>
-            </div>
+      </div>
+      <div class="face back">
+        <div class="table">
+          <div class="td">
+            <%= card_entry_item.entry_value %>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-  </section>
+  <div class="row">
+    <div class="col-lg-4 col-centered">
+      <%= will_paginate @user_card_entries, :page_links => false, renderer: BootstrapPagination::Rails%>
+    </div>
+  </div>
+
+</section>
 
 <%= javascript_tag do %>
     $(document).ready(function(){

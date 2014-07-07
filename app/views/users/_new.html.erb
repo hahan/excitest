@@ -1,25 +1,29 @@
+<div class="col-xs-2">
   <%= form_for(@user, html: {class: "form-horizontal"}) do |f| %>
-      <div class="control-group">
-        <%= f.text_field :name, placeholder: "Name" %>
+      <div class="form-group">
+        <%= f.text_field :name, placeholder: "Name", class: "form-control" %>
       </div>
 
-      <div class="control-group">
-        <%= f.text_field :email, placeholder: "Email" %>
+      <div class="form-group">
+        <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
       </div>
 
-      <div class="control-group">
-        <%= f.password_field :password, placeholder: "Password" %>
+      <div class="form-group">
+        <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
       </div>
 
-      <div class="control-group">
-        <%= f.password_field :password_confirmation, placeholder: "Password confirmation" %>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, placeholder: "Password confirmation", class: "form-control" %>
       </div>
 
-      <div class="control-group">
+      <div class="form-group">
         <%= f.submit "Create account", class: "btn btn-primary" %>
       </div>
 
       <%= render 'shared/error_messages' %>
-
   <% end %>
+</div>
+
+
+
 

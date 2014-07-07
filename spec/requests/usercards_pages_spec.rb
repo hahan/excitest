@@ -14,10 +14,10 @@ describe "User visits the cards pages" do
 
     before { visit newcard_path }
 
-    it { should have_title ("New cards - Excitest") }
+    it { should have_title ("New list - Excitest") }
     it { should have_content ("About your learning list") }
-    it { should have_text ("Name") }
-    it { should have_text ("Description") }
+    it { should have_field ("Name") }
+    it { should have_field ("Description") }
 
     it { should have_content ("Your learning list terms") }
     it { should have_button ("Create") }

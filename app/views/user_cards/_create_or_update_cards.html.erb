@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-xs-6">
+    <%= form_for(@user_card, html: {class: "form-horizontal", role: "form"}) do |f| %>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">About your learning list</h3>
+          </div>
+
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-sm-10">
+                <%= f.text_field :name, placeholder: "Name", class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-10">
+                <%= f.text_area :description, placeholder: "Description", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Your learning list terms</h3>
+          </div>
+
+          <div class="panel-body">
+            <table id="entries_table" class="order-list table">
+              <% counter = 1 %>
+              <%= f.fields_for :user_card_entries do |user_card_entries_form| %>
+                  <tr>
+                    <td><%= user_card_entries_form.text_field :entry_key, class: "col-sm-8" %></td>
+                    <td><%= user_card_entries_form.text_area :entry_value, class: "col-sm-8"  %></td>
+                    <% if ( counter > 2 ) %>
+                        <td><input type="button" class="ibtnDel"  value="Delete"></td>
+                    <% end %>
+                  </tr>
+              <% counter += 1 %>
+              <% end %>
+            </table>
+
+            <table align="left">
+              <tr>
+                <td align="left"><a id="add_entries">Add Row</a></td>
+              </tr>
+            </table>
+
+            <br/>
+
+          </div>
+        </div>
+
+        <table align="center">
+          <tr>
+            <% if yield(:action) == 'new' %>
+                <td align="center"><%= f.submit "Create", class: "btn btn-large btn-success" %></td>
+            <% else %>
+                <td><%= link_to "Cancel", { :controller => :user_cards, :action => :show}, data: { confirm: "You will lose all unsaved updates, are you sure?" }, class: "btn btn-large btn-primary"  %></td>
+                <td style="padding-left: 10px"><%= f.submit "Update", class: "btn btn-large btn-success" %></td>
+            <%end%>
+          </tr>
+        </table>
+
+    <% end %>
+  </div>
+</div>
+
+<% if yield(:action) == 'edit' %>
+    <%= link_to "Delete entire list", { :controller => :user_cards, :action => :delete, :id =>  @user_card.id }, method:"delete", data: { confirm: "You are about to delete the entire list, are you sure?" }, class: "btn btn-danger", align:"left" %>
+<% end %>
+
+<%= javascript_tag do %>
+    $(document).ready(function () {
+    var counter = 0;
+    var table = $("#entries_table"),
+    button = $("#add_entries");
+
+    button.click( function () {
+    counter = $('#entries_table tr').length;
+    var newRow = $("<tr>");
+  var cols = "";
+
+  cols += '<td><input class="col-sm-8" id="user_card_user_card_entries_attributes_' + counter + '_entry_key" name="user_card[user_card_entries_attributes][' + counter + '][entry_key]" type="text" /></td>';
+  cols += '<td><textarea class="col-sm-8" id="user_card_user_card_entries_attributes_' + counter + '_entry_value" name="user_card[user_card_entries_attributes][' + counter + '][entry_value]"> </textarea></td>';
+
+  cols += '<td><input type="button" class="ibtnDel"  value="Delete"></td>';
+
+  newRow.append(cols);
+  table.append(newRow);
+  counter++;
+  });
+
+  $("table.order-list").on("click", ".ibtnDel", function (event){
+  $(this).closest("tr").remove();
+  counter -= 1
+  });
+
+  });
+
+
+<% end %>

@@ -2,27 +2,27 @@
 
 
 <% if not signed_in? %>
-    <div class="row-fluid">
-        <div class="jumbotron masthead span8 home-upper-span">
+    <div class="row">
+        <div class="masthead col-xs-9">
           <p>A simple self learning tool that makes learning exciting!</p>
         </div>
 
-        <div class="span4 home-upper-span">
+        <div class="home-upper-span">
           <%= render 'users/new' %>
         </div>
     </div>
 
     <hr class="soften"/>
 
-    <div class="row-fluid">
+    <div class="row">
       <h3 class="welcome__heading">Try out some learning lists</h3>
 
-      <div class="row-fluid">
+      <div class="row">
         <% @user_cards.each_with_index do |user_card, index| %>
             <% if index > 3 %>
                 <% break %>
             <% end %>
-            <div class="span3">
+            <div class="col-xs-3">
               <h3 class="try-lists">
                 <%= link_to user_card.name, {:controller => :user_cards, :action => :public_card, :id => user_card.id} %>
               </h3>
