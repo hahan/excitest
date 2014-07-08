@@ -63,56 +63,77 @@ hr.soften {
   height: 100%;
 }
 
-.card-container {
-  position: relative;
-  bottom: 0px;
-  width: 60%;
-  height: 60%;
-  margin-left: 20%;
-  left: 0;
-  bottom: 0px;
+/* entire container, keeps perspective */
+.flip-container {
+  perspective: 1000;
+}
+/* flip the pane when hovered */
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+  -webkit-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  width: 100%;
+  height: 100%;
 }
 
-.card-container #flip {
-  -webkit-perspective: 800;
-  width: 60%;
-  height: 80%;
-  position: relative;
-  margin: 50px auto;
-}
-.flip .card.flipped {
-  -webkit-transform: rotatex(-180deg);
-  -moz-transform: rotatex(-180deg);
-}
-.flip .card {
+.flip-container, .front, .back {
   width: 100%;
   height: 100%;
+}
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.9s;
+  transform: perspective(1000px);
   -webkit-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-}
-.flip .card .face {
+  transform-style: preserve-3d;
+
+  position: relative;
+
   width: 100%;
   height: 100%;
-  position: absolute;
+}
+
+/* hide back of pane during swap */
+.front, .back {
   -webkit-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  z-index: 2;
-  font-family: Georgia;
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: papayawhip;
+
+  -webkit-box-shadow: 0 10px 6px 1px #777;
+  -moz-box-shadow: 0 10px 6px 1px #777;
+  box-shadow: 0 10px 6px 1px #777;
+
   font-size: 3em;
   font-stretch: normal;
-  -x-system-font: none;
-  -moz-font-feature-settings: normal;
-  -moz-font-language-override: normal;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
   text-align: center;
   line-height: 1.25;
+
+  z-index: 2;
 }
 
-.face .table {
+/* back, initially hidden pane */
+.back {
+  -webkit-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.flipper .table {
   display: table;
   position: absolute;
   left: 0px;
@@ -121,35 +142,22 @@ hr.soften {
   width: 100%;
 }
 
-.face .td {
+.flipper .td {
   display: table-cell;
   font-size: inherit;
   vertical-align: middle;
 }
 
-.flip .card .front {
-  position: absolute;
-  z-index: 1;
-  background: papayawhip;
-  color: black;
-  cursor: pointer;
-
-  -webkit-box-shadow: 0 10px 6px 1px #777;
-  -moz-box-shadow: 0 10px 6px 1px #777;
-  box-shadow: 0 10px 6px 1px #777;
+.card-container {
+  position: relative;
+  bottom: 0px;
+  width: 50%;
+  height: 55%;
+  margin-left: 20%;
+  left: 0;
+  bottom: 0px;
 }
-.flip .card .back {
-  -webkit-transform: rotatex(-180deg);
-  -moz-transform: rotatex(-180deg);
 
-  background: papayawhip;
-  color: black;
-  cursor: pointer;
-
-  -webkit-box-shadow: 0 10px 6px 1px #777;
-  -moz-box-shadow: 0 10px 6px 1px #777;
-  box-shadow: 0 10px 6px 1px #777;
-}
 
 .box h3{
   text-align:center;
