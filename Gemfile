@@ -1,6 +1,6 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
-ruby '2.1.1'
+ruby '2.1.2'
 
 gem 'rails', '4.0.5'
 
@@ -64,3 +64,5 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'rubber'
+gem 'open4'
