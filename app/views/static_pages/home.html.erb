@@ -16,6 +16,7 @@
 
     <hr class="soften"/>
 
+    <% if !@user_cards.nil? and @user_cards.any? %>
     <div class="row">
       <h3 class="welcome__heading">Try out some learning lists</h3>
 
@@ -33,6 +34,8 @@
 
       </div>
     </div>
+   <% end %> 
+
     </div>
 
 <% end %>

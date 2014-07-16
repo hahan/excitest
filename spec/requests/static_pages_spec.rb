@@ -7,10 +7,13 @@ describe "User visiting the website" do
   describe "The user visiting the home page" do
     before { visit root_path }
 
+    let!(:home_page_user) { FactoryGirl.create(:home_page_user) }
+    let!(:user_card) { FactoryGirl.create(:user_card, user:home_page_user) }
+
     it { should have_title ("Excitest") }
     it { should have_content ("Excitest") }
     it { should have_content ("A simple self learning tool that makes learning exciting!") }
-
+    it { should have_content ("Try out some learning lists") }
   end
 
   describe "The user visiting the about page" do

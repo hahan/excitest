@@ -29,4 +29,11 @@ FactoryGirl.define do
     end
 
   end
+
+  factory :home_page_user, class: User do
+    name "Excitest"
+    email "homepage@excitest.com"
+    password "password"
+    password_confirmation "password"
+  end
 end
