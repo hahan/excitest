@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615083616) do
+ActiveRecord::Schema.define(version: 20140717081021) do
 
   create_table "user_card_entries", force: true do |t|
     t.string   "entry_key"
@@ -29,7 +29,10 @@ ActiveRecord::Schema.define(version: 20140615083616) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "slug"
   end
+
+  add_index "user_cards", ["slug"], name: "index_user_cards_on_slug"
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -39,8 +42,10 @@ ActiveRecord::Schema.define(version: 20140615083616) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
+    t.string   "slug"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["slug"], name: "index_users_on_slug"
 
 end

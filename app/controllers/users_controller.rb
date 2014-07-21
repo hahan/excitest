@@ -23,14 +23,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    User.friendly.find(params[:id]).destroy
     flash[:success] = "User deleted."
     redirect_to users_url
   end
 
   def show
-    @user = User.find(params[:id])
-    @user_cards = @user.user_cards.paginate(page: params[:page])
+    @user = User.friendly.find(params[:id])
+    @user_cards = @user.user_cards.paginate(page: params[:page], :per_page => 10)
   end
 
   private
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     redirect_to(root_url) unless current_user?(@user) or current_user.admin?
   end
 

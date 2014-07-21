@@ -71,17 +71,18 @@ class UserCardsController < ApplicationController
   end
 
   def show
-      @user_card =  current_user.user_cards.find_by( id: params[:id] )
+      @user_card =  current_user.user_cards.find( params[:id] )
 
       if @user_card.nil? && current_user.admin?
         @user_card =  UserCard.find( params[:id] )
       end
 
       @user_card_entries = @user_card.user_card_entries.paginate(page: params[:page], :per_page => 10)
+
   end
 
   def flash_cards
-      @user_card =  current_user.user_cards.find_by( id: params[:id] )
+      @user_card =  current_user.user_cards.find( params[:id] )
 
       if @user_card.nil? && current_user.admin?
         @user_card =  UserCard.find( params[:id] )
@@ -107,7 +108,7 @@ class UserCardsController < ApplicationController
   end
 
    def correct_user
-      @user_card = current_user.user_cards.find_by(id: params[:id])
+      @user_card = current_user.user_cards.find(params[:id])
       redirect_to root_url if @user_card.nil?
    end
 end

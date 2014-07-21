@@ -15,6 +15,7 @@ group :development, :test do
   gem 'spork-rails', '4.0.0'
 end
 
+gem "friendly_id", '5.0.4'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'

@@ -16,7 +16,11 @@
         <ol class="usercards">
           <%= render @user_cards %>
         </ol>
-        <%= will_paginate @user_cards %>
+        <div class="row">
+          <div class="col-lg-4 col-centered">
+            <%= will_paginate @user_cards, renderer: BootstrapPagination::Rails%>
+          </div>
+        </div>  
     <% end %>
   </div>
 </div>

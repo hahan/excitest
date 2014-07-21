@@ -1,4 +1,7 @@
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base 
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :finders]
+
   has_many :user_cards, dependent: :destroy
 
   before_save { self.email = email.downcase }
@@ -14,6 +17,9 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def should_generate_new_friendly_id?
+    new_record?
+  end
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
@@ -21,6 +27,10 @@ class User < ActiveRecord::Base
 
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def should_generate_new_friendly_id?
+    new_record?
   end
 
   private
