@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :show, :edit, :update]
+  before_action :signed_in_user, only: [:index, :show, :edit]
   before_action :correct_user, only: [:show, :edit, :update]
   before_action :admin_user, only: :destroy
 

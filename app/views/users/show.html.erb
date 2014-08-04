@@ -9,6 +9,12 @@
     <h4>
       <%= @user.email %>
     </h4>
+    <% if current_user.admin? %>
+      <span class="timestamp">
+         Account created at <%= @user.created_at %>.
+      </span>
+    <% end %>  
+
   </div>
   <div class="span8">
     <% if @user.user_cards.any? %>

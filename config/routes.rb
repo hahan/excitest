@@ -1,7 +1,9 @@
 Learnbird::Application.routes.draw do
+  get "password_resets/new"
   resources :user_cards
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
 
   root  'static_pages#home'
   match '/public_card', to: 'user_cards#public_card', via: 'get'
