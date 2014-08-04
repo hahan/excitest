@@ -1,0 +1,27 @@
+<div class="col-xs-6 col-md-4 col-centered">
+
+  <%= form_for(@user, :url => password_reset_path(params[:id]), html: {class: "form-horizontal"}) do |f| %>
+      <h4>Please update your password</h4>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+            <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+            <%= f.password_field :password_confirmation, placeholder: "Password confirmation", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+            <%= f.submit "Update password", class: "btn btn-primary" %>
+          </div>
+      </div>
+
+      <%= render 'shared/error_messages' %>
+  <% end %>
+
+</div>
